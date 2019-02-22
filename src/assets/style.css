@@ -1,0 +1,19 @@
+.altoPrecio{
+    color: gray;
+    font-style: italic
+}
+
+.colorRojo{
+    color: crimson;
+}
+
+.subrayado{
+    text-decoration: underline cyan wavy;
+}
+
+.active{
+    color: black;
+    text-decoration: none;
+    background-color: salmon;
+    padding: .5vw;
+}

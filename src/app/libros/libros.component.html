@@ -1,0 +1,77 @@
+<p>Añadir escritor:</p>
+<input type="text" [(ngModel)] = "nuevoEscritor" (keyup.enter) = "add_escritor()"/>
+<button (click)="add_escritor()">Añadir escritor</button>
+
+<h3>Compra las novelas de los mejores autores:</h3>
+<ul>
+    <li *ngFor="let autor of autores; let i = index">
+        {{ (i+1) + '. ' +autor }}
+        <button (click)="delete_autor(i)">Eliminar autor</button>
+    </li>
+</ul>
+
+<ol [ngStyle] = "{'line-height': '2vw'}">
+    <li *ngFor="let libro of listadoLibros">
+        <div 
+            [ngStyle] = "{
+                'text-decoration': libro.disponible <= 0 ? 'line-through' : 'none',
+                'display': 'inline-block'
+            }"
+        >
+            <strong>{{ libro.nombre }}</strong> By <em>{{ libro.autor }}</em>. 
+            <strong 
+                [class.altoPrecio] = "libro.precio > 200"
+                [ngClass] = "{
+                    'colorRojo':  libro.disponible < 10 && libro.precio > 250,
+                    'subrayado': libro.autor == 'Stephen King'
+                }"
+            >
+                ${{ libro.precio }}
+            </strong> 
+            (Disponible: {{ libro.disponible }}) 
+        </div>
+        <span 
+            [ngStyle] = "{
+                'font-weight':'bolder',
+                'padding': '.2vw .5vw',
+                'margin': '0 1vw'
+            }"
+            *ngIf = "libro.precio < 200 && libro.disponible > 0"
+            [style.background] = "libro.disponible < 10 ? '#ff4c00' : '#42f448'"
+            [style.color] = "'white'"
+        >¡OFERTA!</span>
+    </li>
+</ol>
+
+<h3>Nuestra membresía más utilizada:</h3>
+<input type="text" [(ngModel)] = "color"/>
+<div [ngSwitch] = "color"
+    [ngStyle] = "{
+        'font-weight': 'bolder',
+        'font-size': '1.5vw',
+        'color': 'white',
+        'margin': '1vw 0 0 0'
+    }">
+    <span *ngSwitchCase="'#108cd3'" 
+        [ngStyle] = "{
+            'background': color,
+            'padding': '.5vw 1.5vw'
+        }">
+        Azul
+    </span>
+    <span *ngSwitchCase="'#8c00ff'" 
+    [ngStyle] = "{
+        'background': color,
+        'padding': '.5vw 1.5vw'
+    }">
+        Violeta
+    </span>
+    <span *ngSwitchCase="'#ff0061'" 
+    [ngStyle] = "{
+        'background': color,
+        'padding': '.5vw 1.5vw'
+    }">
+        Carmesí
+    </span>
+    <strong *ngSwitchDefault [style.color] = "'black'">No existe esta membresía</strong>
+</div>

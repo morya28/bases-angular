@@ -1,0 +1,20 @@
+<h1>Página principal</h1>
+
+<div *ngIf = "identificado; then siIdentificado else noIdentificado"></div>
+<!-- Si identificado = true continua en la sentencia then, si no en la else -->
+
+<!-- Se usa ng-template para agregar un else, # crea variables dentro de la plantilla-->
+
+<ng-template #siIdentificado>
+
+  <h3>Estás identificado en la aplicación</h3>
+  <button (click) = "setIdentificado(false)">Borrar identificación</button>
+
+</ng-template>
+
+<ng-template #noIdentificado>
+
+  <p>No estás identificado, pulsa este botón para identificarte</p>
+  <button (click) = "setIdentificado(true)">Identificarse</button>
+
+</ng-template>
